@@ -1,23 +1,29 @@
-const { src, dest, watch } = require("gulp"); // Aquí estás importando las funciones necesarias de Gulp y el módulo gulp-sass.
+// Importa las funciones src, dest y watch de Gulp.
+const { src, dest, watch } = require("gulp");
+// Importa gulp-sass y lo configura con el módulo sass.
 const sass = require("gulp-sass")(require("sass"));
+// Importa gulp-plumber para manejar errores durante la compilación.
 const plumber = require('gulp-plumber');
 
-function css(done){ //toma el archivo SASS, lo compila a CSS y lo guarda en la carpeta 
-  src("src/scss/**/*.scss") // Identificar el archivo SASS
-    .pipe(plumber())
-    .pipe(sass()) // Compilarlo
-    .pipe(dest("build/css"))  // Almacenarlo en el disco duro
+// Define la función css que compila archivos SASS a CSS.
+function css(done){
+  // Selecciona todos los archivos SASS dentro de src/scss/ y sus subdirectorios.
+  src("src/scss/**/*.scss")
+    .pipe(plumber()) // Utiliza plumber para prevenir que errores detengan watch.
+    .pipe(sass()) // Compila los archivos SASS a CSS.
+    .pipe(dest("build/css"))  // Guarda los archivos CSS resultantes en build/css.
 
-
-  done(); //Callback que avisa a gulp cuando llegamos al final
+  done(); // Indica a Gulp que la tarea ha finalizado.
 }
 
-
-function dev(done){ //utiliza la función watch de Gulp para observar cambios en el archivo SASS. Cuando se detecta un cambio, se ejecuta la tarea css.
+// Define la función dev que observa cambios en los archivos SASS.
+function dev(done){
+  // Observa todos los archivos SASS y ejecuta la tarea css en caso de cambios.
   watch("src/scss/**/*.scss", css)
 
-
-  done()
+  done(); // Indica a Gulp que la tarea ha finalizado.
 }
-exports.css =css;
-exports.dev = dev; //Aquí estás exportando las tareas css y dev para que puedan ser ejecutadas desde la línea de comandos con gulp css y gulp dev, respectivamente.
+
+// Exporta las tareas css y dev para que puedan ser ejecutadas desde la línea de comandos.
+exports.css = css;
+exports.dev = dev;
