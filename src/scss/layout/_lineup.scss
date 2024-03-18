@@ -18,11 +18,13 @@
 .escenarios-contenedor {
     @include m.tablet {
         @include m.grid(2, 5rem);
+        
     }
 
     p {
         color: v.$negro;
     }
+  
 }
 
 .escenario {
@@ -47,14 +49,30 @@
     background-image: url(../img/icono_rock.png);
 }
 
+.calendario {
+  @include m.resetear-lista;
+  li {
+      padding: 2.5rem;
+      font-weight: 700;
+      span {
+          font-weight: 400;
+      }
+  }
+}
+
 
 .bg-amarillo {
-    background-color: v.$amarillo;
-    background-color:v.$amarillo;
-    }
-
+  background-color: v.$amarillo;
+  border-radius: 1%;
+  li:nth-child(odd) {
+      background-color: darken(v.$amarillo, 18%);
+  }
+}
 .bg-verde {
-    background-color: v.$verde;
-    background-color:v.$verde;
-    
+  background-color: v.$verde;
+  border-radius: 1%;
+  li:nth-child(odd) {
+      background-color: darken(v.$verde, 10%);
+     
+  }
 }

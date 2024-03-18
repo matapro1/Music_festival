@@ -527,12 +527,31 @@ img {
   background-image: url(../img/icono_rock.png);
 }
 
+.calendario {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.calendario li {
+  padding: 2.5rem;
+  font-weight: 700;
+}
+.calendario li span {
+  font-weight: 400;
+}
+
 .bg-amarillo {
   background-color: #fef46d;
-  background-color: #fef46d;
+  border-radius: 1%;
+}
+.bg-amarillo li:nth-child(odd) {
+  background-color: #fded12;
 }
 
 .bg-verde {
   background-color: #4cb8b3;
-  background-color: #4cb8b3;
+  border-radius: 1%;
+}
+.bg-verde li:nth-child(odd) {
+  background-color: #3b9691;
 }
