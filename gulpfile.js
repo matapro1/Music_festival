@@ -54,18 +54,25 @@ function versionAvif( done ) {
   done();
 }
 
+function javascript( done ){
+  src('src/js/**/*.js')
+      .pipe( dest('build/js') );
+  done();
+}
+
 
 // Define la función dev que observa cambios en los archivos SASS.
 function dev(done){
   // Observa todos los archivos SASS y ejecuta la tarea css en caso de cambios.
-  watch("src/scss/**/*.scss", css)
-
+  watch("src/scss/**/*.scss", css);
+  watch("src/js/**/*.js", javascript);
   done(); // Indica a Gulp que la tarea ha finalizado.
 }
 
 // Exporta las tareas css y dev para que puedan ser ejecutadas desde la línea de comandos.
 exports.css = css;
+exports.js = javascript;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
-exports.dev = parallel( imagenes,versionWebp, versionAvif, dev);
+exports.dev = parallel( imagenes,versionWebp, versionAvif, javascript, dev);
